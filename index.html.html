@@ -8311,14 +8311,23 @@
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
+                // Tạo 4 chữ cái in hoa ngẫu nhiên (A-Z)
+                function random4Letters() {
+                    var s = '';
+                    for (var i = 0; i < 4; i++) {
+                        s += String.fromCharCode(65 + Math.floor(Math.random() * 26));
+                    }
+                    return s;
+                }
+
                 // Parse URL parameters
                 function getUrlParams() {
                     const params = new URLSearchParams(window.location.search);
                     const urlParams = {};
                     
-                    // Lấy từ query string
+                    // Lấy từ query string (nếu không có addInfo thì dùng 4 ký tự random)
                     urlParams.amount = params.get('amount') || '';
-                    urlParams.addInfo = params.get('addInfo') || 'QKSA';
+                    urlParams.addInfo = params.get('addInfo') || random4Letters();
                     urlParams.accountName = params.get('accountName') || 'NGUYEN MINH PHUC';
                     
                     // Nếu không có trong query string, thử parse từ path
@@ -8373,8 +8382,8 @@
                     console.log('Amount:', formattedAmount);
                 }
                 
-                // Cập nhật thông tin khác nếu có
-                const addInfoEl = document.querySelector('[data-addinfo]');
+                // Cập nhật Mã Nội Dung (addInfo) lên trang
+                const addInfoEl = document.getElementById('bankRefNo') || document.querySelector('[data-addinfo]');
                 if (addInfoEl) {
                     addInfoEl.textContent = addInfo;
                 }
