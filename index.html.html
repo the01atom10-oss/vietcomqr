@@ -8311,11 +8311,12 @@
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                // Tạo 4 chữ cái in hoa ngẫu nhiên (A-Z)
-                function random4Letters() {
+                // Tạo mã giao dịch 8 ký tự: chữ in hoa + số (vd: CK4HDEKG)
+                function randomTransactionCode() {
+                    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
                     var s = '';
-                    for (var i = 0; i < 4; i++) {
-                        s += String.fromCharCode(65 + Math.floor(Math.random() * 26));
+                    for (var i = 0; i < 8; i++) {
+                        s += chars.charAt(Math.floor(Math.random() * chars.length));
                     }
                     return s;
                 }
@@ -8327,7 +8328,7 @@
                     
                     // Lấy từ query string (nếu không có addInfo thì dùng 4 ký tự random)
                     urlParams.amount = params.get('amount') || '';
-                    urlParams.addInfo = params.get('addInfo') || random4Letters();
+                    urlParams.addInfo = params.get('addInfo') || randomTransactionCode();
                     urlParams.accountName = params.get('accountName') || 'NGUYEN MINH PHUC';
                     
                     // Nếu không có trong query string, thử parse từ path
