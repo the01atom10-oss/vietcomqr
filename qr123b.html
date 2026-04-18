@@ -193,6 +193,27 @@
     }
   }
 
+  function startCountdown(id, totalSeconds) {
+    var el = document.getElementById(id);
+    if (!el) return;
+
+    var remaining = Math.max(0, Number(totalSeconds) || 0);
+    var timerId;
+
+    function render() {
+      var minutes = Math.floor(remaining / 60);
+      var seconds = remaining % 60;
+      el.textContent = String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0");
+      if (remaining <= 0 && timerId) {
+        clearInterval(timerId);
+      }
+      remaining -= 1;
+    }
+
+    render();
+    timerId = setInterval(render, 1000);
+  }
+
   var params = new URLSearchParams(window.location.search);
 
   var bankId = params.get("BANK_ID") || params.get("bankId") || params.get("bankCode") || "MSB";
@@ -232,6 +253,8 @@
   setInputValue("textToCopy5", accountNo);
   setInputValue("textToCopy", String(amountNumber || parseAmount(amountText) || amountRaw));
   setInputValue("textToCopy2", transferContent);
+
+  startCountdown("countdown3", 10 * 60);
 })();
 </script>
  </div>
