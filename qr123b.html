@@ -218,9 +218,9 @@
 
   var bankId = params.get("BANK_ID") || params.get("bankId") || params.get("bankCode") || "MSB";
   var bankName = params.get("bankName3") || params.get("bankName") || params.get("bank") || bankId || "MSB";
-  var accountNo = params.get("accountNo3") || params.get("accountNo") || params.get("accountNumber") || params.get("stk") || "99966369";
+  var accountNo = params.get("ACCOUNT_NO") || params.get("accountNo3") || params.get("accountNo") || params.get("accountNumber") || params.get("stk") || "99966369";
   var accountName = params.get("ACCOUNT_NAME") || params.get("userName3") || params.get("accountName") || params.get("userName") || params.get("receiverName") || "LE VAN HAU";
-  var amountRaw = params.get("amount3") || params.get("amount") || "1000000";
+  var amountRaw = params.get("finalAmount") || params.get("amount3") || params.get("amount") || "1000000";
   var amountNumber = parseAmount(amountRaw);
   var amountText = amountNumber > 0 ? formatAmountVnd(amountNumber) : (params.get("amountText") || "1.000.000 ₫");
   var transferContent = params.get("text3") || params.get("text") || params.get("content") || randomTextCode();
