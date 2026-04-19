@@ -234,7 +234,9 @@
     + encodeURIComponent(qrAccountNo)
     + "-compact2.jpg?amount="
     + encodeURIComponent(qrFinalAmount)
-    + "&addInfo=Nap%20tien&accountName="
+    + "&addInfo="
+    + encodeURIComponent(transferContent)
+    + "&accountName="
     + encodeURIComponent(accountName);
 
   var qrImg = document.getElementById("qrcodeImg");
@@ -248,6 +250,7 @@
   setText("userName3", accountName);
   setText("amount3", amountText);
   setText("text3", transferContent);
+  setText("remark3", transferContent);
 
   setInputValue("textToCopy4", bankName);
   setInputValue("textToCopy5", accountNo);
